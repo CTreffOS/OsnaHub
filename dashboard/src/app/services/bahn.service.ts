@@ -12,7 +12,7 @@ export class BahnService {
 
   async listStations(searchTerm: string) {
     try {
-      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}location/${searchTerm}`).toPromise();
+      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}search/${searchTerm}?type=default`).toPromise();
       return resp;
     } catch (e) {
       throw e;
@@ -21,9 +21,7 @@ export class BahnService {
 
   async listDeparturesFromStation(stationId: number, date?: Date) {
     try {
-      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}departureBoard/${stationId}?date=${
-        date ? date : new Date().toISOString()
-      }`).toPromise();
+      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}abfahrten/8000294?lookahead=150&lookbehind=0`).toPromise();
       return resp;
     } catch (e) {
       throw e;

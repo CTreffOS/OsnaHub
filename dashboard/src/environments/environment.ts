@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrls: {
-    bahn: 'https://api.deutschebahn.com/freeplan/v1/',
+    bahn: 'https://marudor.de/api/station/v1/',
     mastodon: 'https://osna.social/api/v1/'
   },
 };
