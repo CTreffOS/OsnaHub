@@ -1,0 +1,20 @@
+<div class="app-container">
+  <!--<header>Dashboard</header>!-->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-element">
+        <button mat-icon-button color="light" aria-label="Map" (click)="route(0)">
+          <mat-icon class="app-sidenav-icon">chat_bubble_outline</mat-icon>
+        </button>
+      </div> 
+      <div class="nav-element nav-element-active">
+        <button mat-icon-button color="light" aria-label="Polls" (click)="route(1)">
+          <mat-icon class="app-sidenav-icon">poll</mat-icon>
+        </button>
+      </div>
+    </div> 
+  </nav>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</div>
