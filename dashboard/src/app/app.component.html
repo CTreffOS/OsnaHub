@@ -1,5 +1,8 @@
+<div class="settings">
+  <mat-icon class="app-sidenav-icon">settings</mat-icon>
+</div>
 <div class="app-container">
-  <!--<header>Dashboard</header>!-->
+  <!--<header>Dashboard</header>
   <nav>
     <div class="nav-container">
       <div class="nav-element">
@@ -13,8 +16,13 @@
         </button>
       </div>
     </div> 
-  </nav>
-  <section>
-    <router-outlet></router-outlet>
-  </section>
+  </nav>!-->
+  <div *ngIf="modules.bahn">
+    <mat-card class="app-module" cdkDrag>
+      <mat-card-subtitle>Bahn Modul</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-bahn></osnahub-cp-bahn>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

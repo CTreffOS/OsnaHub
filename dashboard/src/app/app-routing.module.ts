@@ -1,16 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlaygroundComponent } from './pages/playground/playground.component';
 
-
-const routes: Routes = [
-  { path: 'playground', component: PlaygroundComponent },
-  { path: '',
-    redirectTo: '/playground',
-    pathMatch: 'full'
-  },
-  { path: '**', component: PlaygroundComponent }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard';
+  title = 'Dashboard | OsnaHub';
+
+  modules: object;
+
+  constructor() {
+    this.modules = {
+      bahn: true,
+      weather: false
+    };
+  }
 }

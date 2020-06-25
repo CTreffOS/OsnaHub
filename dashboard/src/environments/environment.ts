@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://osna.social/api/v1/'
+  baseUrls: {
+    bahn: 'https://api.deutschebahn.com/freeplan/v1/',
+    mastodon: 'https://osna.social/api/v1/'
+  },
 };
 
 /*

@@ -14,7 +14,7 @@ export class MastodonService {
 
   async listStatusesFromAccount(accountId: number): Promise<Array<any>> {
     try {
-      const statuses = await this.http.get<any>(`${environment.baseUrl}accounts/${accountId}/statuses`).toPromise();
+      const statuses = await this.http.get<any>(`${environment.baseUrls.mastodon}accounts/${accountId}/statuses`).toPromise();
 
       for (const status of statuses) {
         if (status.poll) {
@@ -29,7 +29,7 @@ export class MastodonService {
 
   async getPoll(id: number): Promise<any> {
     try {
-      const resp = await this.http.get<IPoll>(`${environment.baseUrl}polls/${id}`).toPromise();
+      const resp = await this.http.get<IPoll>(`${environment.baseUrls.mastodon}polls/${id}`).toPromise();
       return resp;
     } catch (e) {
       throw e;
