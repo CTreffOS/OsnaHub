@@ -19,3 +19,11 @@ h1, h2, h3, h4, h5, h6, p, span, div, input, th, td {
   box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
   background-color: #ffffff;
 }
+
+.loading-spinner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+}

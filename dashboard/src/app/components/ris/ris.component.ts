@@ -15,28 +15,38 @@ export class RisComponent implements OnInit {
   decisions: Array<any>;
   decisionsIndexActive: number;
 
+  loading = false;
+
   constructor(private mastodonService: MastodonService) {
     this.decisions = new Array<any>();
     this.decisionsIndexActive = -1;
   }
 
   async ngOnInit() {
+    this.loading = true;
+
     // list "toots" posted by RIS decisions bot
-    const statuses = await this.mastodonService.listStatusesFromAccount(environment.mastodonAccounts.risDecisions);
+    try {
+      const statuses = await this.mastodonService.listStatusesFromAccount(environment.mastodonAccounts.risDecisions);
 
-    statuses.forEach(status => {
-      status.content = status.content.replace(/<[^>]*>?/gm, '');
+      statuses.forEach(status => {
+        status.content = status.content.replace(/<[^>]*>?/gm, '');
 
-      // split HTML tags from content
-      if (status.thread) {
-        status.thread.content = status.thread.content.replace(/<[^>]*>?/gm, '');
+        // split HTML tags from content
+        if (status.thread) {
+          status.thread.content = status.thread.content.replace(/<[^>]*>?/gm, '');
+        }
+      });
+
+      this.decisions = statuses;
+
+      if (this.decisions.length > 0) {
+        this.decisionsIndexActive = 0;
       }
-    });
-
-    this.decisions = statuses;
-
-    if (this.decisions.length > 0) {
-      this.decisionsIndexActive = 0;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.loading = false;
     }
   }
 

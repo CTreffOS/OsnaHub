@@ -17,6 +17,8 @@ export class BahnComponent implements OnInit {
   departureInputTimeout: any;
   departureStation: string;
 
+  loading = false;
+
   constructor(private changeDetectorRefs: ChangeDetectorRef, private bahnService: BahnService) {
     this.departures = new Array<{ trainName: string, destination: string, route: Array<any>, time?: string, scheduledTime?: string, track?: string }>();
     this.departuresDataSource = new MatTableDataSource<any>();
@@ -31,6 +33,7 @@ export class BahnComponent implements OnInit {
    */
   onSearchChange(value: any) {
     clearTimeout(this.departureInputTimeout);
+    this.loading = true;
 
     this.departureInput = value;
 
@@ -68,6 +71,8 @@ export class BahnComponent implements OnInit {
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        this.loading = false;
       }
     }, 2000);
   }

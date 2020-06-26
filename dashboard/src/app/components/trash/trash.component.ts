@@ -9,6 +9,8 @@ import { TrashService } from 'src/app/services/trash.service';
 export class TrashComponent implements OnInit {
   result: object;
 
+  loading = false;
+
   constructor(private trashService: TrashService) { }
 
   async ngOnInit() {}
@@ -19,6 +21,14 @@ export class TrashComponent implements OnInit {
    * @param $event Event to get area ID entered by user
    */
   async getTrashForArea($event: any) {
-    this.result = await this.trashService.list(Number($event.value));
+    this.loading = true;
+
+    try {
+      this.result = await this.trashService.list(Number($event.value));
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.loading = false;
+    }
   }
 }

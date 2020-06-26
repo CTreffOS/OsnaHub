@@ -25,6 +25,8 @@ export class BusComponent implements OnInit {
   departureInput: string;
   departureInputTimeout: any;
 
+  loading = false;
+
   constructor(private busService: BusService) {
     this.departures = new Array<{ line: string, destination: string, departure: string, delay: number; warning: string }>();
     this.departuresDataSource = new MatTableDataSource<any>();
@@ -40,24 +42,31 @@ export class BusComponent implements OnInit {
    */
   async onSearchChange(value: string) {
     clearTimeout(this.departureInputTimeout);
+    this.loading = true;
 
     this.departureInput = value;
 
     // wait for API calls until there is no input for 2 seconds
     this.departureInputTimeout = setTimeout(async () => {
-      const resp = await this.busService.listDeparturesFromStation(this.departureInput);
-      resp.forEach(result => {
-        if (result) {
-          this.departures.push({
-            line: result[0],
-            destination: result[1],
-            departure: result[2],
-            delay: result[3],
-            warning: result[4]
-          });
-        }
-      });
-      this.departuresDataSource.data = this.departures;
+      try {
+        const resp = await this.busService.listDeparturesFromStation(this.departureInput);
+        resp.forEach(result => {
+          if (result) {
+            this.departures.push({
+              line: result[0],
+              destination: result[1],
+              departure: result[2],
+              delay: result[3],
+              warning: result[4]
+            });
+          }
+        });
+        this.departuresDataSource.data = this.departures;
+      } catch (err) {
+        console.error(err);
+      } finally {
+        this.loading = false;
+      }
     }, 2000);
   }
 }
