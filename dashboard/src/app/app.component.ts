@@ -26,6 +26,10 @@ export class AppComponent {
         trash: {
           active: true,
           position: { x: 0, y: 0 }
+        },
+        bus: {
+          active: true,
+          position: { x: 0, y: 0 }
         }
       }
     };
