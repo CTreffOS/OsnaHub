@@ -19,7 +19,8 @@
     float: left;
     
     &-card {
-      width: 500px;
+      min-width: 200px;
+      max-width: 700px;
       max-height: 700px;
       overflow: scroll;
       border-radius: 20px;
