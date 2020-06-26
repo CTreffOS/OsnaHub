@@ -10,7 +10,7 @@ export class BusService {
 
   constructor(private http: HttpClient) { }
 
-  async listDeparturesFromStation(stationName: string, cols: number): Promise<Array<any>> {
+  async listDeparturesFromStation(stationName: string, cols: number = 10): Promise<Array<any>> {
     try {
       const resp = await this.http.get<any>(
         `${environment.baseUrls.bus}departures?station=${stationName}&cols=${cols}`).toPromise();

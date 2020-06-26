@@ -22,26 +22,34 @@ export class BusComponent implements OnInit {
   displayedColumns: string[] = ['line', 'destination', 'departure', 'delay', 'warning'];
   departures: Array<any>;
   departuresDataSource: MatTableDataSource<any>;
+  departureInput: string;
+  departureInputTimeout: any;
 
   constructor(private busService: BusService) {
     this.departures = new Array<{ line: string, destination: string, departure: string, delay: number; warning: string }>();
     this.departuresDataSource = new MatTableDataSource<any>();
+    this.departureInput = '';
   }
 
-  async ngOnInit() {
-    const resp = await this.busService.listDeparturesFromStation('Neumarkt', 10);
-    resp.forEach(result => {
-      if (result) {
-        this.departures.push({
-          line: result[0],
-          destination: result[1],
-          departure: result[2],
-          delay: result[3],
-          warning: result[4]
-        });
-      }
-    });
-    this.departuresDataSource.data = this.departures;
-  }
+  async ngOnInit() {}
 
+  async onSearchChange(value: string) {
+    clearTimeout(this.departureInputTimeout);
+    this.departureInput = value;
+    this.departureInputTimeout = setTimeout(async () => {
+      const resp = await this.busService.listDeparturesFromStation(this.departureInput);
+      resp.forEach(result => {
+        if (result) {
+          this.departures.push({
+            line: result[0],
+            destination: result[1],
+            departure: result[2],
+            delay: result[3],
+            warning: result[4]
+          });
+        }
+      });
+      this.departuresDataSource.data = this.departures;
+    }, 2000);
+  }
 }
