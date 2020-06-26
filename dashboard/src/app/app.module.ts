@@ -16,12 +16,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BahnComponent } from './components/bahn/bahn.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { RisComponent } from './components/ris/ris.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BahnComponent,
-    TrashComponent
+    TrashComponent,
+    RisComponent
   ],
   imports: [
     BrowserModule,

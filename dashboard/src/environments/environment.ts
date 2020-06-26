@@ -9,6 +9,10 @@ export const environment = {
     mastodon: 'https://osna.social/api/v1/',
     trash: 'https://geo.osnabrueck.de/osb-service/abfuhrkalender/'
   },
+  mastodonAccounts: {
+    ris: 756,
+    risDecisions: 770
+  }
 };
 
 /*

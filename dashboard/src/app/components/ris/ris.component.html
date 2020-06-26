@@ -1,0 +1,21 @@
+<div *ngIf="decisions && decisionsIndexActive > -1">
+  <div class="thread" *ngIf="decisions[decisionsIndexActive].thread">
+    <h5>{{ decisions[decisionsIndexActive].thread.content }}</h5>
+  </div>
+  <div class="decision">
+  <p>{{ decisions[decisionsIndexActive].content }}</p>
+    <div class="poll" *ngIf="decisions[decisionsIndexActive].poll">
+      <div class="poll-option" *ngFor="let pollOption of decisions[decisionsIndexActive].poll.options; let i = index">
+        <div class="poll-option-elem"
+          [style.width]="decisions[decisionsIndexActive].poll.votes_count > 0 ? (pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) + '%' : '0%'"
+          [style.background-color]="'#ff0000'">
+          {{ pollOption.title }} {{ decisions[decisionsIndexActive].poll.votes_count > 0 ? ((pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) | number: 0) : '0' }}%
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <button (click)="previousDecision()">L</button>
+  <button (click)="nextDecision()">R</button>
+</div>

@@ -14,7 +14,8 @@ export class AppComponent {
     this.modules = {
       bahn: true,
       weather: false,
-      trash: true
+      trash: true,
+      ris: true
     };
   }
 }
