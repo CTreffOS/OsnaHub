@@ -8,7 +8,7 @@ export const environment = {
     bahn: 'https://marudor.de/api/iris/v1/',
     mastodon: 'https://osna.social/api/v1/',
     trash: 'https://geo.osnabrueck.de/osb-service/abfuhrkalender/',
-    bus: 'http://localhost:5000/'
+    bus: 'http://hub.osna.social/api/bus/'
   },
   mastodonAccounts: {
     ris: 756,
