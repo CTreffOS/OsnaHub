@@ -7,7 +7,7 @@
 
 <div *ngIf="departureInput">
   <p>Nächste Abfahrten für {{ departureInput }}:</p>
-  <table mat-table [dataSource]="departuresDataSource" multiTemplateDataRows class="mat-elevation-z8" *ngIf="departures && departures.length > 0">
+  <table mat-table [dataSource]="departuresDataSource" multiTemplateDataRows class="mat-elevation-z8" style="box-shadow: none;" *ngIf="departures && departures.length > 0">
     <ng-container matColumnDef="line">
         <th mat-header-cell *matHeaderCellDef> Linie </th>
         <td mat-cell *matCellDef="let element"> {{ element.line }} </td>
