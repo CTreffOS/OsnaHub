@@ -15,11 +15,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BahnComponent } from './components/bahn/bahn.component';
+import { RisComponent } from './components/ris/ris.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BahnComponent
+    BahnComponent,
+    RisComponent
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,19 @@ export class MastodonService {
         if (status.poll) {
           status.poll = await this.getPoll(status.poll.id);
         }
+        if (status.in_reply_to_id) {
+          status.thread = await this.getStatus(status.in_reply_to_id);
+        }
       }
+      return statuses;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  async getStatus(statusId: string) {
+    try {
+      const statuses = await this.http.get<any>(`${environment.baseUrls.mastodon}statuses/${statusId}`).toPromise();
       return statuses;
     } catch (e) {
       throw e;
