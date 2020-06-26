@@ -40,11 +40,23 @@ export class RisComponent implements OnInit {
 
   nextDecision() {
     this.decisionsIndexActive = this.decisionsIndexActive + 1 === this.decisions.length ?
-      this.decisionsIndexActive : this.decisionsIndexActive + 1;
+    this.decisionsIndexActive : this.decisionsIndexActive + 1;
+
+    while (this.decisionsIndexActive < this.decisions.length
+      && !this.decisions[this.decisionsIndexActive].in_reply_to_id
+    ) {
+      this.nextDecision();
+    }
   }
 
   previousDecision() {
     this.decisionsIndexActive = this.decisionsIndexActive - 1 < 0 ?
       this.decisionsIndexActive : this.decisionsIndexActive - 1;
+
+    while (this.decisionsIndexActive > -1
+      && !this.decisions[this.decisionsIndexActive].in_reply_to_id
+    ) {
+      this.previousDecision();
+    }
   }
 }
