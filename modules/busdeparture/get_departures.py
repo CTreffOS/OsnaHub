@@ -54,17 +54,31 @@ json_data = json.loads(response.text.encode('utf8'))
 print('Departure times for ' + station_name)
 
 table = prettytable.PrettyTable()
-table.field_names = ['Line', 'Destination', 'Departure time', 'Delay', 'Information']
+table.field_names = ['Line', 'Destination', 'Departure time', 'Delay (in min)', 'Information']
 table.align = 'l'
+json_array = []
 
 # itereate over all departures
 for i, item in enumerate(json_data['svcResL'][0]['res']['jnyL']):
     # prodX is used as the foreign key for the departure and references to the array position in producs (bus lines)
     line = json_data['svcResL'][0]['res']['common']['prodL'][item['prodL'][0]['prodX']]['name']
     destination = item['dirTxt']
-    # parse departure time
+    # parse planned departure time
+    planned_dep_time_minute = int(item['stbStop']['dTimeS'][2:4])
+    planned_dep_time_hour = int(item['stbStop']['dTimeS'][0:2])
     departure = item['stbStop']['dTimeS'][0:2] + ':' + item['stbStop']['dTimeS'][2:4]
-    delay = 0
+    # parse real departure time
+    if 'dTimeR' in item['stbStop']:
+        real_dep_time_minute = int(item['stbStop']['dTimeR'][2:4])
+        real_dep_time_hour = int(item['stbStop']['dTimeR'][0:2])
+        # calculate delay
+        delay_hours = real_dep_time_hour - planned_dep_time_hour
+        delay_minutes =  real_dep_time_minute - planned_dep_time_minute
+    else:
+        delay_hours = 0
+        delay_minutes = 0
+    # calculate delay in minutes
+    delay = delay_hours*60+delay_minutes
     
     # check if there are any warnings
     messages_array = []
@@ -78,4 +92,7 @@ for i, item in enumerate(json_data['svcResL'][0]['res']['jnyL']):
                     messages_array.append(message['head'])
                     # print('  ' + message['text'])
     table.add_row([line, destination, departure, delay, messages_array])
-print(table)
+    json_array.append([line, destination, departure, delay, messages_array])
+print(table) 
+
+print(json.dumps(json_array))
