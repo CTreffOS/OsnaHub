@@ -98,7 +98,9 @@ def departures():
                         # print('  ' + message['text'])
         table.add_row([line, destination, departure, delay, messages_array])
         json_array.append([line, destination, departure, delay, messages_array])
-    return json.dumps(json_array)
+    response = flask.jsonify(json_array)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 def main():
     api.run()
