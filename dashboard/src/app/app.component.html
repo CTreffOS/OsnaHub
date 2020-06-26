@@ -1,10 +1,5 @@
 <div class="settings">
   <mat-icon class="app-sidenav-icon">settings</mat-icon>
-  <div class="settings-menu">
-    <ul>
-      <li>Test</li>
-    </ul>
-  </div>
 </div>
 <div class="app-container">
   <div class="app-module" 
@@ -28,7 +23,7 @@
     </mat-card>
   </div>
   <div class="app-module"
-  [style.transform]="'translate3d(' + settings.modules.ris.position.x + 'px, ' + settings.modules.ris.position.y + 'px, 0)'"
+  [style.transform]="'translate3d(' + (settings.modules.ris.position.x - 16) + 'px, ' + (settings.modules.ris.position.y - 16) + 'px, 0)'"
   *ngIf="settings.modules.ris">
     <mat-card class="app-module-card" cdkDrag (cdkDragEnded)="drop($event, 'ris')">
       <mat-card-subtitle>RIS Modul</mat-card-subtitle>
