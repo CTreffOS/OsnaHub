@@ -22,7 +22,7 @@ export class RisComponent implements OnInit {
 
     statuses.forEach(status => {
       status.content = status.content.replace(/<[^>]*>?/gm, '');
-      
+
       if (status.thread) {
         status.thread.content = status.thread.content.replace(/<[^>]*>?/gm, '');
       }
@@ -34,7 +34,6 @@ export class RisComponent implements OnInit {
       this.decisionsIndexActive = 0;
     }
     console.log(statuses);
-    console.log(this.decisionsIndexActive);
   }
 
   nextDecision() {
