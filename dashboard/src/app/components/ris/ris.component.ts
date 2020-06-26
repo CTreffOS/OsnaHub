@@ -21,11 +21,13 @@ export class RisComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // list "toots" posted by RIS decisions bot
     const statuses = await this.mastodonService.listStatusesFromAccount(environment.mastodonAccounts.risDecisions);
 
     statuses.forEach(status => {
       status.content = status.content.replace(/<[^>]*>?/gm, '');
 
+      // split HTML tags from content
       if (status.thread) {
         status.thread.content = status.thread.content.replace(/<[^>]*>?/gm, '');
       }
@@ -38,6 +40,9 @@ export class RisComponent implements OnInit {
     }
   }
 
+  /**
+   * Paginate to next decision toot
+   */
   nextDecision() {
     this.decisionsIndexActive = this.decisionsIndexActive + 1 === this.decisions.length ?
     this.decisionsIndexActive : this.decisionsIndexActive + 1;
@@ -49,6 +54,9 @@ export class RisComponent implements OnInit {
     }
   }
 
+  /**
+   * Paginate to last decision toot
+   */
   previousDecision() {
     this.decisionsIndexActive = this.decisionsIndexActive - 1 < 0 ?
       this.decisionsIndexActive : this.decisionsIndexActive - 1;

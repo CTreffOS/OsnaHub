@@ -10,6 +10,12 @@ export class BusService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * List all depatures from a given station name
+   *
+   * @param stationName Station name to list departures from
+   * @param cols Cols to show
+   */
   async listDeparturesFromStation(stationName: string, cols: number = 10): Promise<Array<any>> {
     try {
       const resp = await this.http.get<any>(

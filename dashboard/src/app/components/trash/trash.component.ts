@@ -13,6 +13,11 @@ export class TrashComponent implements OnInit {
 
   async ngOnInit() {}
 
+  /**
+   * Get all trash disposal dates area
+   *
+   * @param $event Event to get area ID entered by user
+   */
   async getTrashForArea($event: any) {
     this.result = await this.trashService.list(Number($event.value));
   }

@@ -24,16 +24,25 @@ export class BahnComponent implements OnInit {
 
   async ngOnInit() {}
 
+  /**
+   * Listen for input change events in search input
+   *
+   * @param value New search value
+   */
   onSearchChange(value: any) {
-    console.log(value);
     clearTimeout(this.departureInputTimeout);
+
     this.departureInput = value;
+
+    // wait for API calls until there is no input for 2 seconds
     this.departureInputTimeout = setTimeout(async () => {
       try {
+        // first search stations by name and use best guess (first position)
         const stations = await this.bahnService.listStations(this.departureInput);
         if (stations && stations.length > 0) {
           this.departureStation = stations[0].title;
 
+          // get the depatures from the retrieved station
           const resp = await this.bahnService.listDeparturesFromStation(Number(stations[0].id));
           resp.forEach(result => {
             let resTime;
@@ -43,12 +52,15 @@ export class BahnComponent implements OnInit {
               resScheduledTime = new Date(result.departure.scheduledTime);
             }
 
+            // push formatted depature for displaying
             this.departures.push({
               trainName: result.train.name,
               destination: result.destination,
               route: result.route,
-              time: resTime ? `${this.pad(resTime.getUTCHours())}:${this.pad(resTime.getUTCMinutes())}` : undefined,
-              scheduledTime: resScheduledTime ? `${this.pad(resScheduledTime.getUTCHours())}:${this.pad(resScheduledTime.getUTCMinutes())}` : undefined,
+              time: resTime ?
+                `${this.pad(resTime.getUTCHours())}:${this.pad(resTime.getUTCMinutes())}` : undefined,
+              scheduledTime: resScheduledTime ?
+                `${this.pad(resScheduledTime.getUTCHours())}:${this.pad(resScheduledTime.getUTCMinutes())}` : undefined,
               track: result.departure ? result.departure.platform : undefined
             });
           });
@@ -60,11 +72,16 @@ export class BahnComponent implements OnInit {
     }, 2000);
   }
 
+  /**
+   * Helper function for zero-padding
+   *
+   * @param value Value to pad
+   */
   private pad(value: number) {
     if (value < 10) {
         return '0' + value;
     } else {
         return value;
     }
-}
+  }
 }

@@ -37,6 +37,9 @@ export class AppComponent {
     this.loadSettings();
   }
 
+  /**
+   * Load user settings from local storage
+   */
   loadSettings() {
     const settingsStr = localStorage.getItem('settings');
     if (settingsStr) {
@@ -44,10 +47,20 @@ export class AppComponent {
     }
   }
 
+  /**
+   * Save user settings in local storage
+   */
   saveSettings() {
     localStorage.setItem('settings', JSON.stringify(this.settings));
   }
 
+  /**
+   * Listen for "drop" events of module cards
+   * Used for storing new position of module card
+   *
+   * @param $event Drop event
+   * @param key Module key (e.g. 'bahn')
+   */
   drop($event: any, key: string) {
     this.settings.modules[key].position.x += $event.distance.x;
     this.settings.modules[key].position.y += $event.distance.y;

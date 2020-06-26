@@ -9,6 +9,11 @@ import { environment } from '../../environments/environment';
 export class TrashService {
   constructor(private http: HttpClient) { }
 
+  /**
+   * List garbage disposal dates based on given area
+   *
+   * @param areaId ID of the area to get
+   */
   async list(areaId: number): Promise<any> {
     try {
       const resp = await this.http.get<any>(`https://cors-anywhere.herokuapp.com/${environment.baseUrls.trash}?bezirk=${areaId}`, {
@@ -20,12 +25,17 @@ export class TrashService {
     }
   }
 
+  /**
+   * Parse a text from .ics
+   *
+   * @param text Parse .ics calendar text
+   */
   private parse(text: string) {
     const lines = text.split('\n');
-    let count = 0;
     let restmuell = false;
     let bio = false;
 
+    // flags, if trash category has been found in parsing process to prevent overriding with newer dates
     const trashInfo = {
       restmuell: {
         date: undefined
@@ -34,11 +44,14 @@ export class TrashService {
         date: undefined
       }
     };
-    let trashDate;
-    for (let line = 0; line < lines.length; line++) {
+
+    let trashDate: string;
+    for (let line = 0; line < lines.length && (!restmuell || !bio); line++) {
+      // check for start date -> actual disposal date
       if (lines[line].startsWith('DTSTART;VALUE=DATE:')) {
         trashDate = lines[line].split(':')[1];
       }
+      // check for trash disposal category
       if (lines[line].startsWith('CATEGORIES')) {
         const category = lines[line].split(':')[1].trim();
 

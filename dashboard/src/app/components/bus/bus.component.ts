@@ -33,9 +33,17 @@ export class BusComponent implements OnInit {
 
   async ngOnInit() {}
 
+  /**
+   * Listen for input change events in search input
+   *
+   * @param value New search value
+   */
   async onSearchChange(value: string) {
     clearTimeout(this.departureInputTimeout);
+
     this.departureInput = value;
+
+    // wait for API calls until there is no input for 2 seconds
     this.departureInputTimeout = setTimeout(async () => {
       const resp = await this.busService.listDeparturesFromStation(this.departureInput);
       resp.forEach(result => {
