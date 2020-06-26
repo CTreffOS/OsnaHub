@@ -50,7 +50,6 @@ export class TrashService {
           bio = true;
         }
       }
-      console.log(lines[line]);
     }
 
     return trashInfo;

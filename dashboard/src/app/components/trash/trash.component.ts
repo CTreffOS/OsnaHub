@@ -11,7 +11,9 @@ export class TrashComponent implements OnInit {
 
   constructor(private trashService: TrashService) { }
 
-  async ngOnInit() {
-    this.result = await this.trashService.list(7);
+  async ngOnInit() {}
+
+  async getTrashForArea($event: any) {
+    this.result = await this.trashService.list(Number($event.value));
   }
 }
