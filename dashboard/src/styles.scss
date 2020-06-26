@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+  font-family: Botoo2;
+  src: url(./assets/fonts/baloo2/Baloo2-Regular.ttf);
+}
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #eeeeee;}
+body { margin: 0; font-family: Botoo2, Roboto, "Helvetica Neue", sans-serif; background-color: #eeeeee;}
+h1, h2, h3, h4, h5, h6, p, span, div, input, th, td {
+  font-family: Botoo2, Roboto, "Helvetica Neue", sans-serif;
+}
 
 .card {
   padding: 10px;
