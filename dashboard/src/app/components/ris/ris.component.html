@@ -16,6 +16,10 @@
   </div>
 </div>
 <div class="pagination">
-  <button (click)="previousDecision()">&lt;</button>
-  <button (click)="nextDecision()">&gt;</button>
+  <button class="pagination-button" (click)="previousDecision()">
+    <mat-icon class="app-sidenav-icon">keyboard_arrow_left</mat-icon>
+  </button>
+  <button class="pagination-button" (click)="nextDecision()">
+    <mat-icon class="app-sidenav-icon">keyboard_arrow_right</mat-icon>
+  </button>
 </div>
