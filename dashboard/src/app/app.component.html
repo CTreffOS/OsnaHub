@@ -22,24 +22,27 @@
       </div>
     </div> 
   </nav>!-->
-  <div class="app-module" *ngIf="modules.bahn">
-    <mat-card class="app-module-card" cdkDrag>
+  <div class="app-module" *ngIf="settings.modules.bahn">
+    <mat-card class="app-module-card" cdkDrag (cdkDragEnded)="drop($event, 'bahn')" 
+    [style.transform]="'translate3d(' + settings.modules.bahn.position.x + 'px, ' + settings.modules.bahn.position.y + 'px, 0)'">
       <mat-card-subtitle>Bahn Modul</mat-card-subtitle>
       <mat-card-content>
         <osnahub-cp-bahn></osnahub-cp-bahn>
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="app-module" *ngIf="modules.trash">
-    <mat-card class="app-module-card" cdkDrag>
+  <div class="app-module" *ngIf="settings.modules.trash">
+    <mat-card class="app-module-card" cdkDrag (cdkDragEnded)="drop($event, 'trash')" 
+    [style.transform]="'translate3d(' + settings.modules.trash.position.x + 'px, ' + settings.modules.trash.position.y + 'px, 0)'">
       <mat-card-subtitle>Müllabfuhr Modul</mat-card-subtitle>
       <mat-card-content>
         <osnahub-cp-trash></osnahub-cp-trash>
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="app-module" *ngIf="modules.ris">
-    <mat-card class="app-module-card" cdkDrag>
+  <div class="app-module" *ngIf="settings.modules.ris">
+    <mat-card class="app-module-card" cdkDrag (cdkDragEnded)="drop($event, 'ris')"
+    [style.transform]="'translate3d(' + settings.modules.ris.position.x + 'px, ' + settings.modules.ris.position.y + 'px, 0)'">
       <mat-card-subtitle>RIS Modul</mat-card-subtitle>
       <mat-card-content>
         <osnahub-cp-ris></osnahub-cp-ris>
