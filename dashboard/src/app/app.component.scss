@@ -1,0 +1,29 @@
+.settings {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 10px;
+}
+
+.app {
+  &-container {
+    width: 100vw;
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    background-color: #eeeeee;
+  }
+
+  &-module {
+    position: absolute;
+    float: left;
+    
+    &-card {
+      min-width: 200px;
+      max-width: 700px;
+      max-height: 700px;
+      overflow: scroll;
+      border-radius: 20px;
+    }
+  }
+}

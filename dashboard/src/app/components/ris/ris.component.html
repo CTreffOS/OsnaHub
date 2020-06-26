@@ -1,0 +1,27 @@
+<mat-spinner class="loading-spinner" *ngIf="loading"></mat-spinner>
+
+<div *ngIf="decisions && decisionsIndexActive > -1">
+  <div class="thread" *ngIf="decisions[decisionsIndexActive].thread">
+    <h5>{{ decisions[decisionsIndexActive].thread.content }}</h5>
+  </div>
+  <div class="decision" *ngIf="decisions[decisionsIndexActive].in_reply_to_id">
+  <p>{{ decisions[decisionsIndexActive].content }}</p>
+    <div class="poll" *ngIf="decisions[decisionsIndexActive].poll">
+      <div class="poll-option" *ngFor="let pollOption of decisions[decisionsIndexActive].poll.options; let i = index">
+        <div class="poll-option-elem"
+          [style.width]="decisions[decisionsIndexActive].poll.votes_count > 0 ? (pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) + '%' : '0%'"
+          [style.background-color]="COLOR_PALETTE[i % COLOR_PALETTE.length]">
+          {{ pollOption.title }} {{ decisions[decisionsIndexActive].poll.votes_count > 0 ? ((pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) | number: 0) : '0' }}%
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pagination">
+  <button class="pagination-button" (click)="previousDecision()">
+    <img class="app-sidenav-icon" src="../../../assets/icons/arrow-left-black.svg">
+  </button>
+  <button class="pagination-button" (click)="nextDecision()">
+    <img class="app-sidenav-icon" src="../../../assets/icons/arrow-right-black.svg">
+  </button>
+</div>

@@ -1,0 +1,45 @@
+<div class="settings">
+  <img class="app-sidenav-icon" src="../../../assets/icons/settings.svg">
+</div>
+<div class="app-container">
+  <div class="app-module" cdkDrag (cdkDragEnded)="drop($event, 'bahn')"
+    [style.transform]="'translate3d(' + settings.modules.bahn.position.x + 'px, ' + settings.modules.bahn.position.y + 'px, 0)'"
+    *ngIf="settings.modules.bahn">
+    <mat-card class="app-module-card">
+      <mat-card-subtitle>Modul - Bahnfahrzeiten</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-bahn></osnahub-cp-bahn>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="app-module" cdkDrag (cdkDragEnded)="drop($event, 'bus')"
+    [style.transform]="'translate3d(' + settings.modules.bus.position.x + 'px, ' + settings.modules.bus.position.y + 'px, 0)'"
+    *ngIf="settings.modules.bus">
+    <mat-card class="app-module-card">
+      <mat-card-subtitle>Modul - Busfahrzeiten</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-bus></osnahub-cp-bus>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="app-module" cdkDrag (cdkDragEnded)="drop($event, 'trash')"
+    [style.transform]="'translate3d(' + settings.modules.trash.position.x + 'px, ' + settings.modules.trash.position.y + 'px, 0)'"
+    *ngIf="settings.modules.trash">
+    <mat-card class="app-module-card">
+      <mat-card-subtitle>Modul - Müllabfuhrzeiten</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-trash></osnahub-cp-trash>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="app-module" cdkDrag (cdkDragEnded)="drop($event, 'ris')"
+    [style.transform]="'translate3d(' + settings.modules.ris.position.x + 'px, ' + settings.modules.ris.position.y + 'px, 0)'"
+    *ngIf="settings.modules.ris">
+    <mat-card class="app-module-card">
+      <mat-card-subtitle>Modul - Ratsinformationssystem</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-ris></osnahub-cp-ris>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

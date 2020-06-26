@@ -1,0 +1,23 @@
+<mat-spinner class="loading-spinner" *ngIf="loading"></mat-spinner>
+
+<mat-form-field>
+  <mat-select placeholder="Bezirk auswählen" (selectionChange)="getTrashForArea($event)">
+    <mat-option value="1">Bezirk 1</mat-option>
+    <mat-option value="2">Bezirk 2</mat-option>
+    <mat-option value="3">Bezirk 3</mat-option>
+    <mat-option value="4">Bezirk 4</mat-option>
+    <mat-option value="5">Bezirk 5</mat-option>
+    <mat-option value="6">Bezirk 6</mat-option>
+    <mat-option value="7">Bezirk 7</mat-option>
+    <mat-option value="8">Bezirk 8</mat-option>
+    <mat-option value="9">Bezirk 9</mat-option>
+    <mat-option value="10">Bezirk 10</mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="result">
+  <p>Die nächsten Müllabfuhr-Zeiten:</p>
+  <br>
+  <p>Restmüll / Altpapier: {{ result.restmuell.date.substring(6,8) }}.{{ result.restmuell.date.substring(4,6) }}.{{ result.restmuell.date.substring(0,4) }}</p>
+  <p>Biomüll / Gelber Sack: {{ result.bio.date.substring(6,8) }}.{{ result.bio.date.substring(4,6) }}.{{ result.bio.date.substring(0,4) }}</p>
+</div>
+

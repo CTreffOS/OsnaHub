@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: Botoo2;
+  src: url(./assets/fonts/baloo2/Baloo2-Regular.ttf);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Botoo2, "Helvetica Neue", sans-serif; background-color: #eeeeee;}
+h1, h2, h3, h4, h5, h6, p, span, div, input, th, td {
+  font-family: Botoo2, "Helvetica Neue", sans-serif;
+}
+
+.card {
+  padding: 10px;
+  border-radius: 20px;
+  -webkit-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.75);
+  background-color: #ffffff;
+}
+
+.loading-spinner {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+}
