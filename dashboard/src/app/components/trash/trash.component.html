@@ -1,3 +1,5 @@
+<mat-spinner class="loading-spinner" *ngIf="loading"></mat-spinner>
+
 <mat-form-field>
   <mat-select placeholder="Bezirk auswählen" (selectionChange)="getTrashForArea($event)">
     <mat-option value="1">Bezirk 1</mat-option>
