@@ -13,7 +13,8 @@ export class AppComponent {
   constructor() {
     this.modules = {
       bahn: true,
-      weather: false
+      weather: false,
+      trash: true
     };
   }
 }

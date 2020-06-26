@@ -30,4 +30,12 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <div class="app-module" *ngIf="modules.trash">
+    <mat-card class="app-module-card" cdkDrag>
+      <mat-card-subtitle>Müllabfuhr Modul</mat-card-subtitle>
+      <mat-card-content>
+        <osnahub-cp-trash></osnahub-cp-trash>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
