@@ -36,7 +36,6 @@ export class RisComponent implements OnInit {
     if (this.decisions.length > 0) {
       this.decisionsIndexActive = 0;
     }
-    console.log(statuses);
   }
 
   nextDecision() {
