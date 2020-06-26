@@ -12,7 +12,7 @@ export class BahnService {
 
   async listStations(searchTerm: string) {
     try {
-      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}search/${searchTerm}?type=default`).toPromise();
+      const resp = await this.http.get<any>(`https://cors-anywhere.herokuapp.com/${environment.baseUrls.bahn}station/v1/search/${searchTerm}?type=default`).toPromise();
       return resp;
     } catch (e) {
       throw e;
@@ -22,7 +22,7 @@ export class BahnService {
   async listDeparturesFromStation(stationId: number, date?: Date): Promise<Array<any>> {
     try {
       const resp = await this.http.get<any>(
-        `https://cors-anywhere.herokuapp.com/${environment.baseUrls.bahn}abfahrten/${stationId}?lookahead=250&lookbehind=0`).toPromise();
+        `https://cors-anywhere.herokuapp.com/${environment.baseUrls.bahn}iris/v1/abfahrten/${stationId}?lookahead=250&lookbehind=0`).toPromise();
       return resp.departures;
     } catch (e) {
       throw e;
