@@ -15,8 +15,12 @@
   }
 
   &-module {
-    width: 500px;
-    max-height: 700px;
-    overflow: scroll;
+    float: left;
+    
+    &-card {
+      width: 500px;
+      max-height: 700px;
+      overflow: scroll;
+    }
   }
 }

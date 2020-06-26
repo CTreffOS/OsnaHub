@@ -19,10 +19,11 @@ export class BahnService {
     }
   }
 
-  async listDeparturesFromStation(stationId: number, date?: Date) {
+  async listDeparturesFromStation(stationId: number, date?: Date): Promise<Array<any>> {
     try {
-      const resp = await this.http.get<any>(`${environment.baseUrls.bahn}abfahrten/8000294?lookahead=150&lookbehind=0`).toPromise();
-      return resp;
+      const resp = await this.http.get<any>(
+        `https://cors-anywhere.herokuapp.com/${environment.baseUrls.bahn}abfahrten/${stationId}?lookahead=250&lookbehind=0`).toPromise();
+      return resp.departures;
     } catch (e) {
       throw e;
     }

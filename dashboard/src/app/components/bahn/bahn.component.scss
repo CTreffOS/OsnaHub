@@ -1,0 +1,32 @@
+table {
+  width: 100%;
+}
+
+tr.station-detail-row {
+  height: 0;
+}
+
+tr.station-element-row:not(.station-expanded-row):hover {
+  background: #777;
+}
+
+tr.station-element-row:not(.station-expanded-row):active {
+  background: #efefef;
+}
+
+.station-element-row td {
+  border-bottom-width: 0;
+}
+
+.station-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.station-element-description {
+  padding: 8px;
+}
+
+.station-element-description-attribution {
+  opacity: 0.5;
+}

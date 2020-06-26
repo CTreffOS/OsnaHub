@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   baseUrls: {
-    bahn: 'https://marudor.de/api/station/v1/',
-    mastodon: 'https://osna.social/api/v1/'
+    bahn: 'https://marudor.de/api/iris/v1/',
+    mastodon: 'https://osna.social/api/v1/',
+    trash: 'https://geo.osnabrueck.de/osb-service/abfuhrkalender/'
   },
 };
 
