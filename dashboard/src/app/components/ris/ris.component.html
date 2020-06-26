@@ -8,7 +8,7 @@
       <div class="poll-option" *ngFor="let pollOption of decisions[decisionsIndexActive].poll.options; let i = index">
         <div class="poll-option-elem"
           [style.width]="decisions[decisionsIndexActive].poll.votes_count > 0 ? (pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) + '%' : '0%'"
-          [style.background-color]="'#ff0000'">
+          [style.background-color]="COLOR_PALETTE[i % COLOR_PALETTE.length]">
           {{ pollOption.title }} {{ decisions[decisionsIndexActive].poll.votes_count > 0 ? ((pollOption.votes_count * 100 / decisions[decisionsIndexActive].poll.votes_count) | number: 0) : '0' }}%
         </div>
       </div>

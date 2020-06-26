@@ -3,12 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { MastodonService } from 'src/app/services/mastodon.service';
 
+
 @Component({
   selector: 'osnahub-cp-ris',
   templateUrl: './ris.component.html',
   styleUrls: ['./ris.component.scss']
 })
 export class RisComponent implements OnInit {
+  COLOR_PALETTE = ['#ed9828', '#a4661b', '#b0abae', '#352525'];
+
   decisions: Array<any>;
   decisionsIndexActive: number;
 
