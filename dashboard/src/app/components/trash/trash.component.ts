@@ -14,7 +14,7 @@ export class TrashComponent implements OnInit {
   async ngOnInit() {}
 
   /**
-   * Get all trash disposal dates area
+   * Get all trash disposal dates in area
    *
    * @param $event Event to get area ID entered by user
    */
