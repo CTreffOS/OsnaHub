@@ -1,7 +1,7 @@
 <div *ngIf="result">
   <p>Die nächsten Müllabfuhr-Zeiten:</p>
   <br>
-  <p>Restmüll / Altpapier: {{ result.restmuell.date }}</p>
-  <p>Biomüll / Gelber Sack: {{ result.bio.date }}</p>
+  <p>Restmüll / Altpapier: {{ result.restmuell.date.substring(6,8) }}.{{ result.restmuell.date.substring(4,6) }}.{{ result.restmuell.date.substring(0,4) }}</p>
+  <p>Biomüll / Gelber Sack: {{ result.bio.date.substring(6,8) }}.{{ result.bio.date.substring(4,6) }}.{{ result.bio.date.substring(0,4) }}</p>
 </div>
 
