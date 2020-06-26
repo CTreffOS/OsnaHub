@@ -62,9 +62,30 @@ export class AppComponent {
    * @param key Module key (e.g. 'bahn')
    */
   drop($event: any, key: string) {
-    this.settings.modules[key].position.x += $event.distance.x;
-    this.settings.modules[key].position.y += $event.distance.y;
+    // https://stackoverflow.com/questions/54185300/angular-material-7-drag-and-drop-x-and-y-coordinates
+    const element = $event.source.getRootElement();
+    const boundingClientRect = element.getBoundingClientRect();
+    const parentPosition = this.getPosition(element);
+
+    this.settings.modules[key].position.x = (boundingClientRect.x - parentPosition.left);
+    this.settings.modules[key].position.y = (boundingClientRect.y - parentPosition.top);
 
     this.saveSettings();
+  }
+
+  /**
+   * Get the current screen position of an element
+   *
+   * @param el Element reference
+   */
+  private getPosition(el: any) {
+    let x = 0;
+    let y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+      x += el.offsetLeft - el.scrollLeft;
+      y += el.offsetTop - el.scrollTop;
+      el = el.offsetParent;
+    }
+    return { top: y, left: x };
   }
 }
